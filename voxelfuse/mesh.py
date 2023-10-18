@@ -142,7 +142,7 @@ class Mesh:
         # Initialize arrays
         verts = []
         verts_colors = []
-        verts_indices = np.zeros((x_len+1, y_len+1, z_len+1))
+        verts_indices = np.zeros((x_len+1, y_len+1, z_len+1), dtype=np.uint32)
         tris = []
         vi = 1  # Tracks current vertex index
 
@@ -771,7 +771,7 @@ def addVerticesAndTriangles(voxel_model_array: np.ndarray, verts_indices: np.nda
         tris.append([cube_verts_indices[4] - 1, cube_verts_indices[5] - 1, cube_verts_indices[7] - 1])
         tris.append([cube_verts_indices[7] - 1, cube_verts_indices[6] - 1, cube_verts_indices[4] - 1])
 
-    return verts, verts_indices.astype(np.uint32), tris, vi
+    return verts, verts_indices, tris, vi
 
 @njit()
 def markInterior(vert_type: np.ndarray, x: int, y: int, z: int):
